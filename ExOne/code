@@ -1,0 +1,80 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+class Student{
+    private String mssv;
+    private String name;
+    private double gpa;
+    public Student(String mssv,String name,double gpa){
+        this.mssv = mssv;
+        this.name = name;
+        this.gpa = gpa;
+    }
+    public String getMssv(){return mssv;}
+    public void setMssv(String mssv){this.mssv=mssv;}
+
+    public String getName(){return name;}
+    public void setName(String name){this.name=name;}
+
+    public double getGpa(){return gpa;}
+    public void setGpa(double gpa){this.gpa=gpa;}
+    
+    
+    public void Display(){
+        System.out.println(mssv + " - " + name + " - " + gpa);
+    }
+    
+}
+class StudentManager<T> {
+    static ArrayList<Student> list = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
+
+    public void addStudent() {
+        System.out.println("Mssv: ");
+        String mssv = sc.nextLine();
+
+        System.out.println("Ten: ");
+        String name = sc.nextLine();
+
+        System.out.println("Gpa: ");
+        double gpa = sc.nextDouble();
+        sc.nextLine();
+
+
+        list.add(new Student(mssv, name, gpa));
+        System.out.println("Them sinh vien thanh cong");
+    }
+
+    public void getAll() {
+        if (list.isEmpty()) {
+            System.out.println("Danh sach rong");
+            return;
+        } else {
+            for (Student s : list) {
+                s.Display();
+            }
+        }
+    }
+}
+
+
+public class Cau1 {
+    static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args){
+
+        StudentManager<Student> list = new StudentManager<>();
+        System.out.println("Nhap so luong sinh vien:");
+        int n = scanner.nextInt();
+
+        for(int i = 0 ; i < n; i++){
+            System.out.println("Sinh vien thu " + (i+1));
+            list.addStudent();
+
+        }
+        System.out.println("Danh sach thong tin sinh vien ");
+        list.getAll();
+
+
+    }
+}
